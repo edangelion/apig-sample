@@ -1,10 +1,11 @@
-FROM gliderlabs/alpine:3.2
+FROM gliderlabs/alpine
 
 COPY . /go/src/github.com/wantedly/
 
 RUN apk update \
   && apk add go \
   && apk add git \
+  && apk add gcc \
   && apk add musl-dev
 
 ENV GOPATH /go
@@ -15,4 +16,4 @@ RUN go get ./...
 
 RUN go build -o bin/server
 
-ENTRYPOINT ["AUTOMIGRATE=1", "bin/server"]
+#ENTRYPOINT ["AUTOMIGRATE=1", "bin/server"]
