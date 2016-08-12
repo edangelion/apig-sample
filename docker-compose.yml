@@ -1,0 +1,19 @@
+version: '2'
+services:
+  postgres:
+    image: postgres:9.4
+    environment:
+      POSTGRES_USER: apig-sample
+      POSGRES_DB: apig-sample
+      POSGRES_PASSWORD: mypassword
+    env_file: apig-sample/.env
+  apig-sample:
+    build: .
+    ports:
+      - "8080:8080"
+    depends_on:
+      - postgres
+
+
+
+
