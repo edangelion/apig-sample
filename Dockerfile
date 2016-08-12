@@ -1,19 +1,17 @@
 FROM gliderlabs/alpine
-
-COPY . /go/src/github.com/wantedly/
-
-RUN apk update \
-  && apk add go \
-  && apk add git \
-  && apk add gcc \
-  && apk add musl-dev
+MAINTAINER Dan Fujimura <dan.fujimura@gmail.com>
 
 ENV GOPATH /go
-
+COPY . /go/src/github.com/wantedly/
 WORKDIR /go/src/github.com/wantedly/apig-sample/
 
-RUN go get ./...
+RUN apk add --no-cache --update \
+  go \
+  git \
+  gcc \
+  musl-dev \
+  && go get ./...
 
 RUN go build -o bin/server
 
-#ENTRYPOINT ["AUTOMIGRATE=1", "bin/server"]
+ENTRYPOINT ["bin/server"]

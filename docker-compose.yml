@@ -3,12 +3,14 @@ services:
   postgres:
     image: postgres:9.4
     environment:
-      POSTGRES_USER: apig-sample
       POSGRES_DB: apig-sample
       POSGRES_PASSWORD: mypassword
     env_file: apig-sample/.env
   apig-sample:
     build: .
+    environment:
+      - DATABASE_URL=postgres://postgres:mypassword@postgres:5432/apig-sample?sslmode=disable
+      - AUTOMIGRATE=1
     ports:
       - "8080:8080"
     depends_on:
