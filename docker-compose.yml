@@ -5,7 +5,6 @@ services:
     environment:
       POSGRES_DB: apig-sample
       POSGRES_PASSWORD: mypassword
-    env_file: apig-sample/.env
   apig-sample:
     build: .
     environment:
@@ -15,7 +14,3 @@ services:
       - "8080:8080"
     depends_on:
       - postgres
-
-
-
-
