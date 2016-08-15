@@ -3,8 +3,8 @@ services:
   postgres:
     image: postgres:9.4
     environment:
-      POSGRES_DB: apig-sample
-      POSGRES_PASSWORD: mypassword
+      POSTGRES_DB: apig-sample
+      POSTGRES_PASSWORD: mypassword
   apig-sample:
     build: .
     environment:
